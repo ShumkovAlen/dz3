@@ -18,23 +18,21 @@ fun parseMatrix(input: String): Array<IntArray>? {
     return matrix
 }
 
+
 fun scalarProduct(matrix1: Array<IntArray>, matrix2: Array<IntArray>): Array<IntArray> {
     val result = Array(matrix1.size) { IntArray(matrix2[0].size) }
 
     for (i in matrix1.indices) {
         for (j in matrix2[0].indices) {
-            var sum = 0
-            for (k in matrix1[0].indices) {
-                sum += matrix1[i][k] * matrix2[k][j]
-            }
-            result[i][j] = sum
+            result[i][j] = (0 until matrix1[0].size).sumOf { k -> matrix1[i][k] * matrix2[k][j] }
         }
     }
 
     return result
 }
+
 fun main(args: Array<String>) {
-    val args= arrayOf("1,2,3;3,4,4","1,0;0,1;2,6")
+    val args= arrayOf("1,2,29;3,4,4","1,0;0,1;2,6")
     if (args.size != 2) {
         println("Пожалуйста, введите две матрицы для вычисления скалярного произведения.")
         return
