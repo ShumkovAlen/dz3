@@ -1,4 +1,17 @@
 package org.example
+import kotlin.random.Random
+
+fun generateProductStringsArray(size: Int): Array<String> {
+    val array = Array(size) { "" }
+    for (i in 0 until size) {
+        val a = Random.nextInt(1, 100)
+        val b = Random.nextInt(1, 100)
+        val c = Random.nextInt(1, 100)
+        val d = Random.nextInt(1, 100)
+        array[i] = "$a,$b;$c,$d"
+    }
+    return array
+}
 
 fun parseMatrix(input: String): Array<IntArray>? {
     val rows = input.split(";")
@@ -18,6 +31,15 @@ fun parseMatrix(input: String): Array<IntArray>? {
     return matrix
 }
 
+//kotlin.csv problem with installation
+//draft for parseMatrix(not tested)
+//fun parseMatrixCsv(input: String): Array<IntArray>? {
+ //   val rows = csvReader().readAll(input).map { it.map { it.toInt() }.toIntArray() }.toTypedArray()
+//
+ //
+
+ //   return rows
+//
 
 fun scalarProduct(matrix1: Array<IntArray>, matrix2: Array<IntArray>): Array<IntArray> {
     val result = Array(matrix1.size) { IntArray(matrix2[0].size) }
@@ -32,7 +54,8 @@ fun scalarProduct(matrix1: Array<IntArray>, matrix2: Array<IntArray>): Array<Int
 }
 
 fun main(args: Array<String>) {
-    val args= arrayOf("1,2,29;3,4,4","1,0;0,1;2,6")
+    val args= generateProductStringsArray(2)
+
     if (args.size != 2) {
         println("Пожалуйста, введите две матрицы для вычисления скалярного произведения.")
         return
